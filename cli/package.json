@@ -1,0 +1,19 @@
+{
+  "name": "create-pratham-ui",
+  "version": "1.0.0",
+  "description": "Developer CLI to pull Marvel UI widgets directly from terminal",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "pratham-ui": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.0.1"
+  }
+}

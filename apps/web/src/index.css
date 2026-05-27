@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --marvel-bg-deep: #080808;
+  --marvel-bg-primary: #0D0D0D;
+  --marvel-bg-surface: #141414;
+  --marvel-bg-elevated: #1A1A1A;
+  --marvel-crimson: #E62429;
+  --marvel-crimson-dark: #B01C20;
+  --marvel-gold: #F0B90B;
+  --marvel-silver: #A8A9AD;
+  --marvel-white: #F5F5F5;
+  --marvel-border: rgba(255,255,255,0.08);
+  --marvel-glow-red: 0 0 20px rgba(230,36,41,0.3);
+  --marvel-glow-gold: 0 0 20px rgba(240,185,11,0.3);
+}
+
+body {
+  background-color: var(--marvel-bg-deep);
+  color: var(--marvel-white);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--marvel-bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--marvel-bg-surface);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--marvel-crimson);
+}

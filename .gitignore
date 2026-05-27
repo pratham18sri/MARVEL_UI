@@ -1,0 +1,39 @@
+# Dependency directories
+node_modules/
+/jspm_packages/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.docusaurus/
+
+# IDE / Editor logs and configurations
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Local test sandboxes
+cli-test/
+cli-test*
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
