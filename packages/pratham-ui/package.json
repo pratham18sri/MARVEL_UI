@@ -18,12 +18,14 @@
   },
   "dependencies": {
     "framer-motion": "^11.1.7",
-    "lucide-react": "^0.368.0"
+    "lucide-react": "^0.368.0",
+    "styled-components": "^6.4.2"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
+    "@types/styled-components": "^5.1.36",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",

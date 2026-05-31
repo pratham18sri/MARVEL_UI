@@ -8,6 +8,15 @@ import {
   HeroCard,
   MarvelModal,
   ArcReactorLoader,
+  ConicGlowButton,
+  SlideUpDownButton,
+  SkewFillButton,
+  RetroRoundButton,
+  PixelPushButton,
+  SocialTooltipButton,
+  WaveFillButton,
+  IsometricCubeButton,
+  TeenageEngineeringButtons,
 } from 'pratham-ui';
 import { Sparkles, Terminal, Activity } from 'lucide-react';
 
@@ -109,6 +118,61 @@ export const LivePreview: React.FC<LivePreviewProps> = ({ slug }) => {
                 </div>
               </div>
             </MarvelModal>
+          </div>
+        );
+      case 'conic-glow-button':
+        return (
+          <div className="flex justify-center">
+            <ConicGlowButton>Hover me!</ConicGlowButton>
+          </div>
+        );
+      case 'slide-up-down-button':
+        return (
+          <div className="flex justify-center">
+            <SlideUpDownButton />
+          </div>
+        );
+      case 'skew-fill-button':
+        return (
+          <div className="flex justify-center">
+            <SkewFillButton>Hover me</SkewFillButton>
+          </div>
+        );
+      case 'retro-round-button':
+        return (
+          <div className="flex justify-center gap-4">
+            <RetroRoundButton>⚡</RetroRoundButton>
+            <RetroRoundButton>★</RetroRoundButton>
+          </div>
+        );
+      case 'pixel-push-button':
+        return (
+          <div className="flex justify-center">
+            <PixelPushButton />
+          </div>
+        );
+      case 'social-tooltip-button':
+        return (
+          <div className="flex justify-center">
+            <SocialTooltipButton />
+          </div>
+        );
+      case 'wave-fill-button':
+        return (
+          <div className="flex justify-center">
+            <WaveFillButton>Get in touch</WaveFillButton>
+          </div>
+        );
+      case 'isometric-cube-button':
+        return (
+          <div className="flex justify-center py-4">
+            <IsometricCubeButton>Hover Me</IsometricCubeButton>
+          </div>
+        );
+      case 'teenage-engineering-buttons':
+        return (
+          <div className="flex justify-center">
+            <TeenageEngineeringButtons />
           </div>
         );
       default:
