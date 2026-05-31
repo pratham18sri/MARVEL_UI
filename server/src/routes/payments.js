@@ -4,6 +4,8 @@ import Razorpay from 'razorpay';
 import User from '../models/User.js';
 import Subscription from '../models/Subscription.js';
 import { protect } from '../middleware/auth.js';
+import { mockDbUpdateUserPlan, mockSubscriptions } from '../config/mockDb.js';
+import { runWithMockFallback } from '../config/db.js';
 
 const router = express.Router();
 
@@ -138,25 +140,54 @@ router.post('/verify', protect, async (req, res) => {
 
     let amount = plan === 'pro_yearly' ? 1499 : 199;
 
-    // Update User Document
-    const user = await User.findById(req.user._id);
-    user.plan = 'pro';
-    user.subscriptionId = razorpayPaymentId;
-    user.subscriptionStatus = 'active';
-    user.subscriptionExpiry = expiryDate;
-    await user.save();
+    // Update User and Create Subscription Log (Database & Mock Fallback)
+    const dbOp = async () => {
+      const user = await User.findById(req.user._id);
+      if (!user) throw new Error('User not found in database');
+      user.plan = 'pro';
+      user.subscriptionId = razorpayPaymentId;
+      user.subscriptionStatus = 'active';
+      user.subscriptionExpiry = expiryDate;
+      await user.save();
 
-    // Create Subscription Log
-    await Subscription.create({
-      userId: req.user._id,
-      razorpayOrderId,
-      razorpayPaymentId,
-      plan,
-      amount,
-      status: 'active',
-      startDate: new Date(),
-      endDate: expiryDate,
-    });
+      await Subscription.create({
+        userId: req.user._id,
+        razorpayOrderId,
+        razorpayPaymentId,
+        plan,
+        amount,
+        status: 'active',
+        startDate: new Date(),
+        endDate: expiryDate,
+      });
+
+      return user;
+    };
+
+    const mockFallback = async () => {
+      const user = await mockDbUpdateUserPlan(req.user._id, 'pro');
+      if (user) {
+        user.subscriptionId = razorpayPaymentId;
+      }
+      mockSubscriptions.push({
+        _id: 'sub_' + Math.random().toString(36).substring(2, 9),
+        userId: req.user._id,
+        razorpayOrderId,
+        razorpayPaymentId,
+        plan,
+        amount,
+        status: 'active',
+        startDate: new Date(),
+        endDate: expiryDate,
+      });
+      return user;
+    };
+
+    const user = await runWithMockFallback(dbOp, mockFallback);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
     res.json({
       success: true,

@@ -2,7 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { UIComponent } from '../store/componentStore';
 import { Eye, Copy, Lock, ShieldAlert } from 'lucide-react';
-import { MarvelButton, GlowButton, ArcReactorLoader } from 'pratham-ui';
+import {
+  MarvelButton,
+  GlowButton,
+  ArcReactorLoader,
+  ConicGlowButton,
+  SlideUpDownButton,
+  SkewFillButton,
+  RetroRoundButton,
+  PixelPushButton,
+  SocialTooltipButton,
+  WaveFillButton,
+  IsometricCubeButton,
+  TeenageEngineeringButtons,
+  MicrosoftBrutalistButton,
+  RetroPlayNowButton,
+  ShadowOffsetBoxButton,
+  PurpleSlideFillButton,
+  HoverScaleCircleButton,
+  TooltipDownloadButton,
+  SocialGridHoverButton,
+  BookmarkSlideButton,
+  SpaciousAIButton,
+  ExploreGreenButton,
+  LetsGoArrowButton,
+} from 'pratham-ui';
 
 export interface ComponentCardProps {
   component: UIComponent;
@@ -22,6 +46,127 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ component }) => {
         return (
           <div className="scale-75">
             <GlowButton>Charge Core</GlowButton>
+          </div>
+        );
+      case 'conic-glow-button':
+        return (
+          <div className="scale-75">
+            <ConicGlowButton>Hover me!</ConicGlowButton>
+          </div>
+        );
+      case 'slide-up-down-button':
+        return (
+          <div className="scale-75">
+            <SlideUpDownButton />
+          </div>
+        );
+      case 'skew-fill-button':
+        return (
+          <div className="scale-75">
+            <SkewFillButton>Hover me</SkewFillButton>
+          </div>
+        );
+      case 'retro-round-button':
+        return (
+          <div className="scale-75 flex gap-2">
+            <RetroRoundButton>⚡</RetroRoundButton>
+            <RetroRoundButton>★</RetroRoundButton>
+          </div>
+        );
+      case 'pixel-push-button':
+        return (
+          <div className="scale-75">
+            <PixelPushButton />
+          </div>
+        );
+      case 'social-tooltip-button':
+        return (
+          <div className="scale-75">
+            <SocialTooltipButton />
+          </div>
+        );
+      case 'wave-fill-button':
+        return (
+          <div className="scale-75">
+            <WaveFillButton>Get in touch</WaveFillButton>
+          </div>
+        );
+      case 'isometric-cube-button':
+        return (
+          <div className="scale-50 translate-y-[-10px]">
+            <IsometricCubeButton>Hover Me</IsometricCubeButton>
+          </div>
+        );
+      case 'teenage-engineering-buttons':
+        return (
+          <div className="scale-[0.45] origin-center">
+            <TeenageEngineeringButtons />
+          </div>
+        );
+      case 'microsoft-brutalist-button':
+        return (
+          <div className="scale-75">
+            <MicrosoftBrutalistButton />
+          </div>
+        );
+      case 'retro-play-now-button':
+        return (
+          <div className="scale-[0.65]">
+            <RetroPlayNowButton />
+          </div>
+        );
+      case 'shadow-offset-box-button':
+        return (
+          <div className="scale-75">
+            <ShadowOffsetBoxButton />
+          </div>
+        );
+      case 'purple-slide-fill-button':
+        return (
+          <div className="scale-75">
+            <PurpleSlideFillButton>Hover me</PurpleSlideFillButton>
+          </div>
+        );
+      case 'hover-scale-circle-button':
+        return (
+          <div className="scale-75">
+            <HoverScaleCircleButton>Hello</HoverScaleCircleButton>
+          </div>
+        );
+      case 'tooltip-download-button':
+        return (
+          <div className="scale-[0.65]">
+            <TooltipDownloadButton />
+          </div>
+        );
+      case 'social-grid-hover-button':
+        return (
+          <div className="scale-[0.45] origin-center">
+            <SocialGridHoverButton />
+          </div>
+        );
+      case 'bookmark-slide-button':
+        return (
+          <div className="scale-[0.65]">
+            <BookmarkSlideButton />
+          </div>
+        );
+      case 'spacious-ai-button':
+        return (
+          <div className="scale-75">
+            <SpaciousAIButton />
+          </div>
+        );
+      case 'explore-green-button':
+        return (
+          <div className="scale-75">
+            <ExploreGreenButton />
+          </div>
+        );
+      case 'lets-go-arrow-button':
+        return (
+          <div className="scale-75">
+            <LetsGoArrowButton />
           </div>
         );
       case 'marvel-card':

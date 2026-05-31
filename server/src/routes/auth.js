@@ -1,8 +1,10 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import mongoose from 'mongoose';
 import User from '../models/User.js';
 import { protect } from '../middleware/auth.js';
+import { mockDbQueryUser, mockDbCreateUser } from '../config/mockDb.js';
 
 const router = express.Router();
 
@@ -49,21 +51,38 @@ router.post('/mock-login', async (req, res) => {
   }
 
   try {
-    let user = await User.findOne({ email });
-    if (!user) {
-      user = await User.create({
-        name: email.split('@')[0].toUpperCase(),
-        email,
-        avatar: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${email}`,
-        provider: 'local',
-        providerId: 'mock_local_' + Math.random().toString(36).substring(2, 9),
-        role: role || 'user',
-        plan: plan || 'free',
-      });
+    let user;
+    if (mongoose.connection.readyState === 1) {
+      user = await User.findOne({ email });
+      if (!user) {
+        user = await User.create({
+          name: email.split('@')[0].toUpperCase(),
+          email,
+          avatar: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${email}`,
+          provider: 'local',
+          providerId: 'mock_local_' + Math.random().toString(36).substring(2, 9),
+          role: role || 'user',
+          plan: plan || 'free',
+        });
+      } else {
+        if (role) user.role = role;
+        if (plan) user.plan = plan;
+        await user.save();
+      }
     } else {
-      if (role) user.role = role;
-      if (plan) user.plan = plan;
-      await user.save();
+      user = await mockDbQueryUser({ email });
+      if (!user) {
+        user = await mockDbCreateUser({
+          name: email.split('@')[0].toUpperCase(),
+          email,
+          avatar: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${email}`,
+          role: role || 'user',
+          plan: plan || 'free',
+        });
+      } else {
+        if (role) user.role = role;
+        if (plan) user.plan = plan;
+      }
     }
     sendTokenResponse(user, res);
   } catch (error) {

@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import User from '../models/User.js';
+import { mockDbQueryUser } from '../config/mockDb.js';
 
 export const protect = async (req, res, next) => {
   let token;
@@ -8,7 +10,12 @@ export const protect = async (req, res, next) => {
   const apiKey = req.headers['x-api-key'] || req.query.key || req.headers['pratham-ui-key'];
   if (apiKey) {
     try {
-      const user = await User.findOne({ apiKey });
+      let user;
+      if (mongoose.connection.readyState === 1) {
+        user = await User.findOne({ apiKey });
+      } else {
+        user = await mockDbQueryUser({ apiKey });
+      }
       if (user) {
         req.user = user;
         return next();
@@ -33,7 +40,12 @@ export const protect = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.userId).select('-apiKey');
+    let user;
+    if (mongoose.connection.readyState === 1) {
+      user = await User.findById(decoded.userId).select('-apiKey');
+    } else {
+      user = await mockDbQueryUser({ userId: decoded.userId });
+    }
     
     if (!user) {
       return res.status(401).json({ message: 'User not found' });

@@ -17,6 +17,17 @@ import {
   WaveFillButton,
   IsometricCubeButton,
   TeenageEngineeringButtons,
+  MicrosoftBrutalistButton,
+  RetroPlayNowButton,
+  ShadowOffsetBoxButton,
+  PurpleSlideFillButton,
+  HoverScaleCircleButton,
+  TooltipDownloadButton,
+  SocialGridHoverButton,
+  BookmarkSlideButton,
+  SpaciousAIButton,
+  ExploreGreenButton,
+  LetsGoArrowButton,
 } from 'pratham-ui';
 import { Sparkles, Terminal, Activity } from 'lucide-react';
 
@@ -173,6 +184,72 @@ export const LivePreview: React.FC<LivePreviewProps> = ({ slug }) => {
         return (
           <div className="flex justify-center">
             <TeenageEngineeringButtons />
+          </div>
+        );
+      case 'microsoft-brutalist-button':
+        return (
+          <div className="flex justify-center">
+            <MicrosoftBrutalistButton />
+          </div>
+        );
+      case 'retro-play-now-button':
+        return (
+          <div className="flex justify-center">
+            <RetroPlayNowButton />
+          </div>
+        );
+      case 'shadow-offset-box-button':
+        return (
+          <div className="flex justify-center">
+            <ShadowOffsetBoxButton />
+          </div>
+        );
+      case 'purple-slide-fill-button':
+        return (
+          <div className="flex justify-center">
+            <PurpleSlideFillButton>Hover me</PurpleSlideFillButton>
+          </div>
+        );
+      case 'hover-scale-circle-button':
+        return (
+          <div className="flex justify-center">
+            <HoverScaleCircleButton>Hello</HoverScaleCircleButton>
+          </div>
+        );
+      case 'tooltip-download-button':
+        return (
+          <div className="flex justify-center">
+            <TooltipDownloadButton />
+          </div>
+        );
+      case 'social-grid-hover-button':
+        return (
+          <div className="flex justify-center">
+            <SocialGridHoverButton />
+          </div>
+        );
+      case 'bookmark-slide-button':
+        return (
+          <div className="flex justify-center">
+            <BookmarkSlideButton />
+          </div>
+        );
+      case 'spacious-ai-button':
+        return (
+          <div className="flex justify-center">
+            <SpaciousAIButton />
+          </div>
+        );
+      case 'explore-green-button':
+        return (
+          <div className="flex justify-center">
+            <ExploreGreenButton />
+          </div>
+        );
+      case 'lets-go-arrow-button':
+        return (
+          <div className="flex justify-center">
+            <LetsGoArrowButton />
           </div>
         );
       default:
